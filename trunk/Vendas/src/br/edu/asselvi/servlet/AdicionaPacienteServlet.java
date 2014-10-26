@@ -22,7 +22,7 @@ import br.edu.asselvi.modelo.entidade.Paciente;
  * @author TiLL
  *
  */
-@WebServlet("/adicionaPaciente")
+@WebServlet("/adicionaPacienteServlet")
 public class AdicionaPacienteServlet extends HttpServlet {
 
 	/**
