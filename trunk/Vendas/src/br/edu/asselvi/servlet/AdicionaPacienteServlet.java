@@ -56,7 +56,10 @@ public class AdicionaPacienteServlet extends HttpServlet {
 		paciente.setNome(request.getParameter("nome"));
 		paciente.setRg  (request.getParameter("rg"  ));
 		paciente.setCpf (request.getParameter("cpf" ));
-		paciente.setSexo(request.getParameter("sexo") == "F" ? ESexo.F
+		
+		String s = request.getParameter("sexo");
+		
+		paciente.setSexo(request.getParameter("sexo").equals("F") ? ESexo.F
 				: ESexo.M);
 		
 		dao.inserirPadrao(paciente);
