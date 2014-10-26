@@ -67,8 +67,11 @@ public class AdicionaPacienteServlet extends HttpServlet {
         // imprime 
         out.println("<html>");
         out.println("<body>");
+        out.println("<form action="+"cadastroPaciente.jsp"+" method="+"POST"+">");
         out.println("Paciente " + paciente.getNome() +
                 " adicionado com sucesso");
+        out.println("<br>");
+        out.println("<input type="+"submit"+" value="+"Voltar"+">");
         out.println("</body>");
         out.println("</html>");
 			
