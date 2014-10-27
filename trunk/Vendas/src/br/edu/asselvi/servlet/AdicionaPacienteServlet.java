@@ -57,8 +57,6 @@ public class AdicionaPacienteServlet extends HttpServlet {
 		paciente.setRg  (request.getParameter("rg"  ));
 		paciente.setCpf (request.getParameter("cpf" ));
 		
-		String s = request.getParameter("sexo");
-		
 		paciente.setSexo(request.getParameter("sexo").equals("F") ? ESexo.F
 				: ESexo.M);
 		
