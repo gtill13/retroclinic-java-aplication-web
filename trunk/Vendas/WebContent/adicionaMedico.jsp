@@ -49,7 +49,7 @@
 			</p>
 
 			<p>
-				<input type="submit" value="Gravar" />&nbsp;
+				<input type="submit" value="Gravar" name="submitAction" />&nbsp;
 			</p>
 	</span>
 </body>
