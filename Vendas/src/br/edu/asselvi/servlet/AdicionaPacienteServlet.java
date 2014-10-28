@@ -33,6 +33,15 @@ public class AdicionaPacienteServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 	
+		String submitAction= request.getParameter("submitAction");
+        if (submitAction != null) {
+            //if (submitAction.equals("Generate PDF")) {
+            //   System.out.println("Generate PDF button pressed");
+            //} else if (submitAction.equals("Generate Excel")) {
+            //    System.out.println("Generate Excel button pressed");
+            //}
+        }
+		
 		// variaveis
 		PrintWriter out = response.getWriter();
 		
