@@ -4,55 +4,90 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="config/padrao.css">
 <title>Adicionar Paciente</title>
 </head>
 <body>
-	<span style="font-family: courier new, courier, monospace;">
-		<h1>Adicionar&nbsp;Paciente</h1>
+<form style="margin: 0;	padding: 0;">
+<nav>
+	<ul>
+		<li class="fakeMenu">RETROCLINIC</li>
+        <li><a href="index.jsp">Inicio</a></li>
+        <li><a href="sobre.jsp">Sobre</a></li>
+        <li><a> Cadastros</a>
+        	<ul>
+            	<li><a href="consulta.jsp"   >Consulta   </a></li>
+            	<li><a href="medico.jsp"     >Medico     </a></li>
+            	<li><a href="paciente.jsp"   >Paciente   </a></li>                   
+            	<li><a href="medicamento.jsp">Medicamento</a></li>
+            	<li><a href="pagamento.jsp"  >Pagamento  </a></li>
+            </ul>
+        </li>
+        <li><a href="ajuda.jsp">Ajuda</a></li>               
+	</ul>
+</nav><br><br><br>
+</form>
 
+
+	<h1>Adicionar&nbsp;Paciente</h1>
+
+	<hr />
+	<form action="adicionaPacienteServlet" method="POST">
+		<table>
+			<tr> 
+				<td>Nome:</td>
+				<td><input maxlength="25" name="nome" type="text" /></td> 
+			</tr>
+			<tr>
+				<td>RG:</td>
+				<td><input maxlength="20"name="rg" type="text" /></td>
+			</tr>
+			<tr>
+				<td>CPF:</td>
+				<td><input maxlength="20" name="cpf" type="text" /></td>
+			</tr>
+			<tr>
+				<td><input checked="checked" name="sexo" type="radio" value="M" />&nbsp;Masculino</td>
+				<td><input name="sexo" type="radio" value="F" />&nbsp;Feminino</td>
+			</tr>		
+		</table>
 		<hr />
-		<form action="adicionaPacienteServlet" method="POST">
-			<p>
-				Nome: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input maxlength="25"
-					name="nome" type="text" /><br /> RG: &nbsp; &nbsp; &nbsp; &nbsp;
-				&nbsp; &nbsp; &nbsp;<input maxlength="20" name="rg" type="text" /><br />
-				CPF: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input
-					maxlength="20" name="cpf" type="text" /> <br /> <input
-					checked="checked" name="sexo" type="radio" value="M" />&nbsp;Masculino
-				&nbsp; &nbsp; &nbsp;<input name="sexo" type="radio" value="F" />&nbsp;Feminino
-			</p>
-
-			<hr />
-			<p>
-				Endere&ccedil;o:&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input
-					maxlength="40" name="endereco" type="text" /><br
-					style="font-family: 'courier new', courier, monospace;" />
-				Cidade:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input maxlength="20"
-					name="cidade" type="text" /><br
-					style="font-family: 'courier new', courier, monospace;" />
-				Bairro:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input maxlength="20"
-					name="bairro" type="text" /><br
-					style="font-family: 'courier new', courier, monospace;" />
-				Cep:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input
-					maxlength="8" name="cep" size="20" type="tel" />
-			</p>
-
-			<hr />
-			<p>
-				Email: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input maxlength="40"
-					name="email" type="email" /><br
-					style="font-family: 'courier new', courier, monospace;" />
-				Telefone:&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input maxlength="20"
-					name="telefone" type="tel" /><br
-					style="font-family: 'courier new', courier, monospace;" />
-				Celular:&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<input maxlength="20"
-					name="celular" type="tel" />
-			</p>
-
-			<p>
-				<input type="submit" value="Gravar" name="submitAction" />&nbsp;
-			</p>
-		</form>
+		<table>
+			<tr>
+				<td style=" width : 140px;">Endere&ccedil;o:</td>
+				<td><input maxlength="40" name="endereco" type="text" /></td>
+			</tr>
+			<tr>
+				<td>Cidade:</td>
+				<td><input maxlength="20"name="cidade" type="text" /></td>
+			</tr>
+			<tr>
+				<td>Bairro:</td>
+				<td><input maxlength="20"name="bairro" type="text" /></td>
+			</tr>
+			<tr>
+				<td>Cep:</td>
+				<td><input maxlength="8" name="cep" size="20" type="tel" /></td>
+			</tr>
+		</table>
+		<hr />
+		<table>
+			<tr>
+				<td style=" width : 140px;">Email:</td>
+				<td><input maxlength="40"	name="email" type="email" /></td>
+			</tr>
+			<tr>
+				<td>Telefone:</td>
+				<td><input maxlength="20" name="telefone" type="tel" /></td>
+			</tr>
+			<tr>
+				<td>Celular:</td>
+				<td><input maxlength="20" name="celular" type="tel" /></td>
+			</tr>
+		</table>
+		
+		<input type="submit" value="Gravar" name="submitAction" />&nbsp;
+	</form>
 	</span>
 </body>
 </html>

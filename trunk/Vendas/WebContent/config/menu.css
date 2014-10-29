@@ -1,0 +1,57 @@
+@CHARSET "ISO-8859-1";
+
+#menu {
+	background: #000000;
+	width: 900px;
+	height: 30px;
+	margin: auto; 
+	font-family: arial, helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+ul {
+		
+	padding: 0;
+	list-style: none;
+}
+
+ul li {
+	float: left;
+	width: 150px;
+	text-align: center;
+	line-height: 21px;
+}
+
+.fakeMenu {
+	width: 150px;
+	padding: 5px 0px;
+	color: #333;
+	background: #FF5F5F;
+	text-decoration: none;
+}
+
+ul li a {
+	display: block;
+	padding: 5px 10px;
+	color: #333;
+	background: #f2f2f2;
+	text-decoration: none;
+}
+
+ul li a:hover {
+	color: #fff;
+	background: #939393;
+}
+
+ul li ul {
+	display: none;
+}
+
+ul li:hover ul {
+    position:absolute;
+    display:block;
+    border: 1px solid black;
+    width: 150px;
+}
+

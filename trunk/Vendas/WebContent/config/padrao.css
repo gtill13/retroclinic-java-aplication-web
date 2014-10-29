@@ -1,0 +1,51 @@
+@CHARSET "ISO-8859-1";
+
+#corpo{
+	width: 900px;
+	height: 800px;
+	background-color:#f2f2f2;
+	margin:auto;
+}
+
+#topo {
+	width: 900px;
+	height: 160px;
+	background-color:#000000;
+	margin:auto;
+}
+
+#conteudo {
+	width: 90%;
+	height: 590px;
+	background-color:#f2f2f2;
+	margin:auto;
+}
+
+#rodape {
+	width: 900px;
+	height: 40px;
+	background-color:#000000;
+	clear:both;
+}
+
+td {
+	 width : 140px;
+}
+
+body {
+	
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+}
+
+.button {
+	font: bold 11px Arial;
+	text-decoration: none;
+	background-color: #EEEEEE;
+	color: #333333;
+	padding: 2px 6px 2px 6px;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+}
