@@ -18,13 +18,13 @@ ul {
 
 ul li {
 	float: left;
-	width: 150px;
+	width: 180px;
 	text-align: center;
 	line-height: 21px;
 }
 
 .fakeMenu {
-	width: 150px;
+	width: 180px;
 	padding: 5px 0px;
 	color: #333;
 	background: #FF5F5F;
