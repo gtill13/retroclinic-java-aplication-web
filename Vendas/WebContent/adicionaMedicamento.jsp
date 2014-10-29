@@ -4,25 +4,52 @@
 <html>
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="config/padrao.css">
+<link rel="stylesheet" type="text/css" href="config/menu.css">
 <title>Adicionar Medico</title>
 </head>
 <body>
-	<span style="font-family: courier new, courier, monospace;">
-		<h1>Adicionar&nbsp;Medicamento</h1>
-
-		<hr />
-		<form action="adicionaMedicamentoServlet" method="POST">
-			<p>
-				Nome: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input maxlength="25"
-					name="nome" type="text" /><br />
-				Descri&ccedil;&atilde;o:&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;<input
-					maxlength="20" name="descricao" type="text" />
-			</p>
-
-			<p>
-				<input name="submitAction" type="submit" value="Gravar" />&nbsp;
-			</p>
-		</form>
-	</span>
+<div ID="corpo">
+<div ID="menu">
+	<ul>
+		<li class="fakeMenu">RETROCLINIC</li>
+		<li><a href="#">HOME</a></li>
+		<li><a href="#">HOME</a></li>
+		<li><a>HOME</a>
+			<ul>
+            	<li><a href="consulta.jsp"   >Consulta   </a></li>
+            	<li><a href="medico.jsp"     >Medico     </a></li>
+            	<li><a href="paciente.jsp"   >Paciente   </a></li>                   
+            	<li><a href="medicamento.jsp">Medicamento</a></li>
+            	<li><a href="pagamento.jsp"  >Pagamento  </a></li>
+            </ul>
+         </li> 
+		<li><a href="#">HOME</a></li>
+		<li><a href="#">HOME</a></li>
+	</ul>
+</div> <!-- menu --> 
+<div ID="topo">
+</div> <!-- topo --> 	
+<div ID="conteudo">
+	<h1>Adicionar&nbsp;Medicamento</h1>
+	<hr />
+	<form action="adicionaMedicamentoServlet" method="POST">
+	<table>
+		<tr>
+			<td style=" width : 120px;">Nome:</td>
+			<td style=" width : 151px;"><input maxlength="25" name="nome" type="text" /></td>
+		</tr>
+		<tr>	
+			<td style=" width : 120px;">Descri&ccedil;&atilde;o:</td>
+			<td style=" width : 151px;"><input maxlength="20" name="descricao" type="text" /></td>
+		</tr>
+	</table>
+	<input name="submitAction" type="submit" value="Gravar" />
+	</form>
+	
+</div> <!-- conteudo -->
+<div ID="rodape">
+</div> <!-- rodape -->	
+</div> <!-- corpo --> 	
 </body>
 </html>
