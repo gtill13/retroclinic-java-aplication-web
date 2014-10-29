@@ -21,6 +21,21 @@
 	margin:auto;
 }
 
+#conteudo_esq {
+	width: 50%;
+	height: 100%;
+	float:left;
+	text-align: left;
+}
+
+#conteudo_dir {
+	width: 50%;
+	height: 100%;
+	overflow: auto;
+	float:right;
+	text-align: left;
+}
+
 #rodape {
 	width: 900px;
 	height: 40px;
@@ -30,6 +45,15 @@
 
 td {
 	 width : 140px;
+}
+
+.table_morota {
+	border: 1px solid #333;
+	border-spacing: 0px;
+}
+
+.table_morota td {
+	border: 1px solid #333;
 }
 
 body {
