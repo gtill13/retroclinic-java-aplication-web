@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="config/padrao.css">
 <link rel="stylesheet" type="text/css" href="config/menu.css">
-<title>Adicionar Medicamento</title>
+<title>Medicamento</title>
 </head>
 <body>
 <form action="MedicamentoServlet" method="POST">
@@ -17,7 +17,7 @@
 <div ID="menu">
 	<ul>
 		<li class="fakeMenu">RETROCLINIC</li>
-		<li><a href="index.jsp">HOME</a></li>
+		<li><a href="index.jsp">Home</a></li>
 		<li><a>Cadastro</a>
 			<ul>
             	<li><a href="consulta.jsp"   >Consulta   </a></li>
@@ -28,7 +28,7 @@
             </ul>
          </li> 
 		<li><a href="#">Relatorio</a></li>
-		<li><a href="#">LOGIN?</a></li>
+		<li><a href="#">Logoff</a></li>
 	</ul>
 </div> <!-- menu --> 
 <div ID="topo">
@@ -36,6 +36,17 @@
 </div> <!-- topo --> 	
 <div ID="conteudo">
 <div ID="conteudo_esq">
+<% String s1 = ""; %>
+<% Object obj = request.getAttribute("medicamento");
+
+if (obj != null)
+	{
+		Medicamento medicamento = (Medicamento) obj;
+		s1 = medicamento.getDescricao();
+	}%> 
+
+<%= s1 %>
+
 	<h1>Adicionar Medicamento</h1>
 	<hr />
 	<table>
@@ -48,10 +59,10 @@
 			<td style=" width : 151px;"><input maxlength="20" name="descricao" type="text" /></td>
 		</tr>
 	</table>
-	<input name="submitAction" type="submit" value="Gravar" />
+	<button name="submitAction" type="submit" value="incluir">Gravar</button>
 </div> <!-- conteudo_esq -->
 <div ID="conteudo_dir">
-	<h1>Grid Medicamentos</h1>
+	<h1>Medicamentos Cadastrados</h1>
 	<hr />
 	
 	<table class="table_morota">
@@ -70,12 +81,12 @@
 				<td><%=medicamento.getId()       %></td>
 				<td><%=medicamento.getNome()     %></td>
 				<td><%=medicamento.getDescricao()%></td>
-				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=medicamento.getId()%>" border="0"><img src="imagem/editar.png" width="15" height="15"></button></td>
-				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=medicamento.getId()%>" border="0"><img src="imagem/excluir.png" width="15" height="15"></button></td>
+				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=medicamento.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
+				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=medicamento.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
 			</tr>
 			<%
-				}
-			%>
+		}
+	%>
 		</table>
 	
 </div> <!-- conteudo_dir -->

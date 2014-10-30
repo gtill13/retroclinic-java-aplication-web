@@ -4,7 +4,6 @@
 package br.edu.asselvi.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,79 +21,100 @@ import br.edu.asselvi.modelo.entidade.Medicamento;
 
 @WebServlet("/MedicamentoServlet")
 public class MedicamentoServlet extends HttpServlet {
-	
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-		super.service(request, response);
 
-		
-		// variaveis
-		PrintWriter out = response.getWriter();
-				
-		MedicamentoDao dao         = new MedicamentoDao();
-		Medicamento    medicamento = new Medicamento();
-		
-		//implementacao
-		medicamento.setNome     (request.getParameter("nome"     ));
-		medicamento.setDescricao(request.getParameter("descricao"));
-				
-		dao.inserir(medicamento);
-		
-		// imprime 
-        out.println("<html>");
-        out.println("<body>");
-        out.println("<form action="+"cadastroPaciente.jsp"+" method="+"POST"+">");
-        out.println("Medicamento " + medicamento.getNome() +
-                " adicionado com sucesso");
-        out.println("<br>");
-        out.println("<input type="+"submit"+" value="+"Voltar"+">");
-        out.println("</body>");
-        out.println("</html>");
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void service(HttpServletRequest request,
+			HttpServletResponse response) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		super.service(request, response);
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.doGet(request, response);
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		PrintWriter out = response.getWriter();
-		
-		String submitAction= request.getParameter("submitAction");
-        if (submitAction != null) {
-        	
-        	String delimitador = "[ |]+";
-        	String[] acao = submitAction.split(delimitador);
-        	
-        	
-            if (acao[0].equals("editar")) {
-               
-                out.println("<html>");
-                out.println("<body>");
-                out.println("<form action="+"cadastroPaciente.jsp"+" method="+"POST"+">");
-                out.println("if (submitAction.equals(editar)) {");
-                out.println("<br>");
-                out.println("<input type="+"submit"+" value="+"Voltar"+">");
-                out.println("</body>");
-                out.println("</html>");
-            	
-            	
-            } else if (submitAction.equals("Generate Excel")) {
-                out.println("<html>");
-                out.println("<body>");
-                out.println("<form action="+"cadastroPaciente.jsp"+" method="+"POST"+">");
-                out.println("   } else if (submitAction.equals(Generate Excel)) {");
-                out.println("<br>");
-                out.println("<input type="+"submit"+" value="+"Voltar"+">");
-                out.println("</body>");
-                out.println("</html>");
-            }
-        }
-		
-	}
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// PrintWriter out = response.getWriter();
+
+		String submitAction = request.getParameter("submitAction");
+		if (submitAction != null) {
+
+			String delimitador = "[ |]+";
+			String[] acao = submitAction.split(delimitador);
+
+			if (acao[0].equals("incluir")) {
+
+				incluir(request, response);
+
+			} else if (acao[0].equals("atualizar")) {
+
+				atualizar(Long.parseLong(acao[1]), request, response);
+
+			} else if (acao[0].equals("editar")) {
+
+				request.setAttribute("medicamento", editar(Long.parseLong(acao[1]), request, response));
 	
+			} else if (acao[0].equals("excluir")) {
+
+				excluir(Long.parseLong(acao[1]), request, response);
+
+			}
+		}
+
+		request.getRequestDispatcher("medicamento.jsp").forward(request, response);;	
+	}
+
+	void incluir(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		MedicamentoDao dao = new MedicamentoDao();
+		Medicamento medicamento = new Medicamento();
+
+		// implementacao
+		medicamento.setNome(request.getParameter("nome"));
+		medicamento.setDescricao(request.getParameter("descricao"));
+
+		dao.inserir(medicamento);
+	}
+
+	void atualizar(long id, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		MedicamentoDao dao = new MedicamentoDao();
+		Medicamento medicamento = new Medicamento();
+
+		// implementacao
+
+		medicamento.setId(id);
+		medicamento.setNome(request.getParameter("nome"));
+		medicamento.setDescricao(request.getParameter("descricao"));
+
+		dao.atualizar(medicamento);
+	}
+
+	Medicamento editar(long id, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		MedicamentoDao dao = new MedicamentoDao();
+
+		return dao.buscaMedicamentoPeloId(id);
+	}
+
+	void excluir(long id, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		MedicamentoDao dao = new MedicamentoDao();
+
+		dao.deletar(id);
+	}
 }
