@@ -48,9 +48,25 @@ td {
 }
 
 .table_morota {
-	border: 1px solid #333;
 	border-spacing: 0px;
 }
+
+.table_morota tr {
+	background: #f2f2f2; 
+	color: #000000;
+}
+
+.td1 {
+	background: #000000;
+	color: #FFFFFF
+}
+
+.td2 {
+	border: 1px solid #333;
+	width: 15px;
+	background: #FFFFFF; 
+	color: #000000;
+ }
 
 .table_morota td {
 	border: 1px solid #333;
