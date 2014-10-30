@@ -24,6 +24,19 @@ public class PagamentoDao extends DaoBase {
 
 	}
 
+	public void inserir(Pagamento pagamento) {
+
+		conecta();
+		executeUpdate("insert into pagamento (valor, descricao) values ( '"
+				+ pagamento.getValor()+ "', '" + pagamento.getDescricao()+ "' ) ");
+
+		commit();
+
+		disconecta();
+
+	}
+
+	
 	public void atualizar(Pagamento pagamento) throws DaoException {
 
 		if (pagamento == null)
@@ -33,16 +46,30 @@ public class PagamentoDao extends DaoBase {
 
 		executeUpdate("update pagamento set valor = '" + pagamento.getValor() + "', descricao = '" + pagamento.getDescricao() 
 				+ "' where id = '" + pagamento.getId() + "' ");
+
+		commit();
+
+		disconecta();
 	}
 
 	public void deletar(Pagamento pagamento) throws DaoException {
 
-		conecta();
-
-		executeUpdate("delete from pagamento where id = '" + pagamento.getId()
-				+ "' ");
+		deletar(pagamento.getId());
 	}
 
+	public void deletar(long id) throws DaoException {
+
+		conecta();
+
+		executeUpdate("delete from pagamento where id = '" + id
+				+ "' ");
+
+		commit();
+
+		disconecta();
+	}
+
+	
 	public List<Pagamento> buscaTodos() {
 
 		final List<Pagamento> listPagamentos = new ArrayList<Pagamento>();

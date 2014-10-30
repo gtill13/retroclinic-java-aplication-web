@@ -51,11 +51,16 @@ public class MedicamentoDao extends DaoBase {
 	
 	public void deletar(Medicamento medicamento) throws DaoException {
 
+		deletar(medicamento.getId());
+	}
+
+	public void deletar(long id) throws DaoException {
+
 		//EnderecoDao enderecoDao = new EnderecoDao();
 		//ContatoDao contatoDao = new ContatoDao();
 		conecta();
 
-		executeUpdate("delete from medicamento where id = '" + medicamento.getId() + "' "); 
+		executeUpdate("delete from medicamento where id = '" + id + "' "); 
 
 		//enderecoDao.deletar(paciente.getEndereco());
 		//contatoDao.deletar(paciente.getContato());
@@ -65,6 +70,7 @@ public class MedicamentoDao extends DaoBase {
 		disconecta();
 	}
 
+	
 	public List<Medicamento> buscaTodos () {
 		
 		final List<Medicamento> listMedicamento = new ArrayList<Medicamento>();

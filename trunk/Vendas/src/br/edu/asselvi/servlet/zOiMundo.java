@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @WebServlet("/teste")
-public class OiMundo extends HttpServlet {
+public class zOiMundo extends HttpServlet {
 
 	/**
 	 * 
