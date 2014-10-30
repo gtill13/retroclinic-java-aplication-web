@@ -9,9 +9,10 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 <link rel="stylesheet" type="text/css" href="config/padrao.css">
 <link rel="stylesheet" type="text/css" href="config/menu.css">
-<title>Adicionar Medico</title>
+<title>Adicionar Medicamento</title>
 </head>
 <body>
+<form action="MedicamentoServlet" method="POST">
 <div ID="corpo">
 <div ID="menu">
 	<ul>
@@ -31,12 +32,12 @@
 	</ul>
 </div> <!-- menu --> 
 <div ID="topo">
+<img src="imagem/banner.jpg" width="900px" height="160px">
 </div> <!-- topo --> 	
 <div ID="conteudo">
 <div ID="conteudo_esq">
 	<h1>Adicionar Medicamento</h1>
 	<hr />
-	<form action="adicionaMedicamentoServlet" method="POST">
 	<table>
 		<tr>
 			<td style=" width : 120px;">Nome:</td>
@@ -48,7 +49,6 @@
 		</tr>
 	</table>
 	<input name="submitAction" type="submit" value="Gravar" />
-	</form>
 </div> <!-- conteudo_esq -->
 <div ID="conteudo_dir">
 	<h1>Grid Medicamentos</h1>
@@ -56,11 +56,9 @@
 	
 	<table class="table_morota">
 	<tr style="background: #000000; color: #FFFFFF">
-		<td>ID       </td>
-		<td>Nome     </td>
-		<td>Descricao</td>
-		<td style="background: #FFFFFF; color: #000000">Editar</td>
-		<td style="background: #FFFFFF; color: #000000">Excluir</td>
+		<td class="td1">ID       </td>
+		<td class="td1">Nome     </td>
+		<td class="td1">Descricao</td>
 	</tr>
 	<%
 		MedicamentoDao dao = new MedicamentoDao();
@@ -72,8 +70,8 @@
 				<td><%=medicamento.getId()       %></td>
 				<td><%=medicamento.getNome()     %></td>
 				<td><%=medicamento.getDescricao()%></td>
-				<td></td>
-				<td></td>
+				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=medicamento.getId()%>" border="0"><img src="imagem/editar.png" width="15" height="15"></button></td>
+				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=medicamento.getId()%>" border="0"><img src="imagem/excluir.png" width="15" height="15"></button></td>
 			</tr>
 			<%
 				}
@@ -85,5 +83,6 @@
 <div ID="rodape">
 </div> <!-- rodape -->	
 </div> <!-- corpo --> 	
+</form>
 </body>
 </html>

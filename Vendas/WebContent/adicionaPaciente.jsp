@@ -86,7 +86,7 @@
 			</tr>
 		</table>
 		
-		<input type="submit" value="Gravar" name="submitAction" />&nbsp;
+		<input type="submit" value="Gravar" name="submitAction" />;
 	</form>
 	</span>
 </body>
