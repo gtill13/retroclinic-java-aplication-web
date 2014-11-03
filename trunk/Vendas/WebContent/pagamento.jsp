@@ -35,20 +35,40 @@
 <img src="imagem/banner.jpg" width="900px" height="160px">
 </div> <!-- topo --> 	
 <div ID="conteudo">
+<%
+Object obj = request.getAttribute("pagamento");
+Pagamento pagamento;
+if (obj != null) {
+	pagamento = (Pagamento) obj;
+} else {
+	pagamento = new Pagamento(0, 0, "");
+}
+%> 
 <div ID="conteudo_esq">
-	<h1>Adicionar Pagamento</h1>
+	<h1>
+	<% if (pagamento.getId() == 0) { %>
+		Adicionar Pagamento 
+	<%} else { %>
+		Alterar Pagamento <%}%>
+	</h1>
+	
 	<hr />
 	<table>
 		<tr>
 			<td style=" width : 120px;">Descrição:</td>
-			<td style=" width : 151px;"><input maxlength="255" name="descricao" type="text" /></td>
+			<td style=" width : 151px;"><input maxlength="255" name="descricao" type="text" value="<%=pagamento.getDescricao()%>"/></td>
 		</tr>
 		<tr>	
 			<td style=" width : 120px;">Valor</td>
-			<td style=" width : 151px;"><input maxlength="20" name="valor" type="text" /></td>
+			<td style=" width : 151px;"><input maxlength="20" name="valor" type="text" value="<%=pagamento.getValor()%>" /></td>
 		</tr>
 	</table>
-	<button name="submitAction" type="submit" value="incluir">Gravar</button>
+	<% if (pagamento.getId() == 0) { %>
+		<button name="submitAction" type="submit" value="incluir">Gravar</button>
+	<%} else { %>
+		<button name="submitAction" type="submit" value="atualizar|<%=pagamento.getId()%>">Gravar</button>
+	<%}%>
+	<button name="submitAction" type="submit" value="limpar">Limpar</button>
 </div> <!-- conteudo_esq -->
 <div ID="conteudo_dir">
 	<h1>Pagamentos Cadastrados</h1>
@@ -57,21 +77,21 @@
 	<table class="table_morota">
 	<tr style="background: #000000; color: #FFFFFF">
 		<td class="td1">ID</td>
-		<td class="td1">Descricao</td>
+		<td class="td1">Descrição</td>
 		<td class="td1">Valor</td>
 	</tr>
 	<%
 		PagamentoDao dao = new PagamentoDao();
 		List<Pagamento> pagamentos = dao.buscaTodos();
 		
-		for (Pagamento pagamento : pagamentos) {
+		for (Pagamento dado : pagamentos) {
 			%>
 			<tr>
-				<td><%=pagamento.getId()       %></td>
-				<td><%=pagamento.getDescricao()     %></td>
-				<td><%=pagamento.getValor()%></td>
-				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=pagamento.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
-				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=pagamento.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
+				<td><%=dado.getId()       %></td>
+				<td><%=dado.getDescricao()     %></td>
+				<td><%=dado.getValor()%></td>
+				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=dado.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
+				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=dado.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
 			</tr>
 			<%
 		}

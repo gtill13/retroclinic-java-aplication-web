@@ -2,6 +2,16 @@ package br.edu.asselvi.modelo.entidade;
 
 public class Endereco {
 	
+	public Endereco(long id, String endereco, String cidade, String bairro,
+			String cep) {
+		super();
+		this.id = id;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.cep = cep;
+	}
+
 	public Endereco(String endereco, String cidade, String bairro, String cep) {
 		super();
 		this.endereco = endereco;

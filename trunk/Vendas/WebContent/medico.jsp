@@ -1,4 +1,7 @@
 <%@page import="br.edu.asselvi.modelo.entidade.Medico"%>
+<%@page import="br.edu.asselvi.modelo.entidade.Endereco"%>
+<%@page import="br.edu.asselvi.modelo.entidade.Contato"%>
+<%@page import="br.edu.asselvi.modelo.entidade.ESexo"%>
 <%@page import="java.util.List"%>
 <%@page import="br.edu.asselvi.modelo.dao.MedicoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,63 +38,89 @@
 <img src="imagem/banner.jpg" width="900px" height="160px">
 </div> <!-- topo --> 	
 <div ID="conteudo">
+
+<%
+Object obj = request.getAttribute("medico");
+Medico medico;
+if (obj != null) {
+	medico = (Medico) obj;
+} else {
+	medico = new Medico(0, "", "", "", ESexo.M, new Endereco(0, "", "", "", ""), new Contato(0, "", "", ""));
+}
+%> 
+
 <div ID="conteudo_esq">
-	<h1>Adicionar Medico</h1>
+	<h1>
+	<% if (medico.getId() == 0) { %>
+		Adicionar Medico 
+	<%} else { %>
+		Alterar Medico <%}%>
+	</h1>
 
 	<hr />
 		<table>
 			<tr> 
 				<td style=" width : 140px;">Nome:</td>
-				<td><input maxlength="25" name="nome" type="text" /></td> 
+				<td><input maxlength="25" name="nome" type="text" value="<%=medico.getNome()%>" /></td> 
 			</tr>
 			<tr>
 				<td>Crm:</td>
-				<td><input maxlength="20"name="crm" type="text" /></td>
+				<td><input maxlength="20"name="crm" type="text" value="<%=medico.getCrm()%>" /></td>
 			</tr>
 			<tr>
 				<td>CPF:</td>
-				<td><input maxlength="20" name="cpf" type="text" /></td>
+				<td><input maxlength="20" name="cpf" type="text" value="<%=medico.getCpf()%>" /></td>
 			</tr>
 			<tr>
-				<td><input checked="checked" name="sexo" type="radio" value="M" />&nbsp;Masculino</td>
-				<td><input name="sexo" type="radio" value="F" />&nbsp;Feminino</td>
+			<% if (medico.getSexo() == ESexo.M) { %>
+				<td><input checked="checked" name="sexo" type="radio" value="M" />Masculino</td>
+				<td><input name="sexo" type="radio" value="F" />Feminino</td>
+			<% } else { %>
+				<td><input name="sexo" type="radio" value="M" />Masculino</td>
+				<td><input checked="checked" name="sexo" type="radio" value="F" />Feminino</td>
+			<% } %>
 			</tr>		
 		</table>
 		<hr />
 		<table>
 			<tr>
 				<td style=" width : 140px;">Endere&ccedil;o:</td>
-				<td><input maxlength="40" name="endereco" type="text" /></td>
+				<td><input maxlength="40" name="endereco" type="text" value="<%=medico.getEndereco().getEndereco()%>" /></td>
 			</tr>
 			<tr>
 				<td>Cidade:</td>
-				<td><input maxlength="20"name="cidade" type="text" /></td>
+				<td><input maxlength="20"name="cidade" type="text" value="<%=medico.getEndereco().getCidade()%>" /></td>
 			</tr>
 			<tr>
 				<td>Bairro:</td>
-				<td><input maxlength="20"name="bairro" type="text" /></td>
+				<td><input maxlength="20"name="bairro" type="text" value="<%=medico.getEndereco().getBairro()%>" /></td>
 			</tr>
 			<tr>
 				<td>Cep:</td>
-				<td><input maxlength="8" name="cep" size="20" type="tel" /></td>
+				<td><input maxlength="8" name="cep" size="20" type="tel" value="<%=medico.getEndereco().getCep()%>" /></td>
 			</tr>
 		</table>
 		<hr />
 		<table>
 			<tr>
 				<td style=" width : 140px;">Email:</td>
-				<td><input maxlength="40"	name="email" type="email" /></td>
+				<td><input maxlength="40"	name="email" type="email" value="<%=medico.getContato().getEmail()%>"/></td>
 			</tr>
 			<tr>
 				<td>Telefone:</td>
-				<td><input maxlength="20" name="telefone" type="tel" /></td>
+				<td><input maxlength="20" name="telefone" type="tel" value="<%=medico.getContato().getTelefone()%>" /></td>
 			</tr>
 			<tr>
 				<td>Celular:</td>
-				<td><input maxlength="20" name="celular" type="tel" /></td>
+				<td><input maxlength="20" name="celular" type="tel" value="<%=medico.getContato().getCelular()%>" /></td>
 			</tr>
 		</table>
-	<button name="submitAction" type="submit" value="incluir">Gravar</button>
+	<% if (medico.getId() == 0) { %>
+		<button name="submitAction" type="submit" value="incluir">Gravar</button>
+	<%} else { %>
+		<button name="submitAction" type="submit" value="atualizar|<%=medico.getId()%>">Gravar</button>
+	<%}%>
+	<button name="submitAction" type="submit" value="limpar">Limpar</button>
 </div> <!-- conteudo_esq -->
 <div ID="conteudo_dir">
 	<h1>Medicos Cadastrados</h1>
@@ -107,14 +136,14 @@
 		MedicoDao dao = new MedicoDao();
 		List<Medico> medicos = dao.buscaTodos();
 		
-		for (Medico medico : medicos) {
+		for (Medico dado : medicos) {
 			%>
 			<tr>
-				<td><%=medico.getId()  %></td>
-				<td><%=medico.getNome()%></td>
-				<td><%=medico.getCrm() %></td>
-				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=medico.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
-				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=medico.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
+				<td><%=dado.getId()  %></td>
+				<td><%=dado.getNome()%></td>
+				<td><%=dado.getCrm() %></td>
+				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=dado.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
+				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=dado.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
 			</tr>
 			<%
 		}

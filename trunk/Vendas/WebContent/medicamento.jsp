@@ -35,31 +35,40 @@
 <img src="imagem/banner.jpg" width="900px" height="160px">
 </div> <!-- topo --> 	
 <div ID="conteudo">
+
+<%
+Object obj = request.getAttribute("medicamento");
+Medicamento medicamento;
+if (obj != null) {
+	medicamento = (Medicamento) obj;
+} else {
+	medicamento = new Medicamento(0, "", "");
+}
+%> 
 <div ID="conteudo_esq">
-<% String s1 = ""; %>
-<% Object obj = request.getAttribute("medicamento");
-
-if (obj != null)
-	{
-		Medicamento medicamento = (Medicamento) obj;
-		s1 = medicamento.getDescricao();
-	}%> 
-
-<%= s1 %>
-
-	<h1>Adicionar Medicamento</h1>
+	<h1>
+	<% if (medicamento.getId() == 0) { %>
+		Adicionar Medicamento 
+	<%} else { %>
+		Alterar Medicamento <%}%>
+	</h1>
 	<hr />
 	<table>
 		<tr>
 			<td style=" width : 120px;">Nome:</td>
-			<td style=" width : 151px;"><input maxlength="25" name="nome" type="text" /></td>
+			<td style=" width : 151px;"><input maxlength="25" name="nome" type="text" value="<%=medicamento.getNome()%>"/></td>
 		</tr>
 		<tr>	
 			<td style=" width : 120px;">Descri&ccedil;&atilde;o:</td>
-			<td style=" width : 151px;"><input maxlength="20" name="descricao" type="text" /></td>
+			<td style=" width : 151px;"><input maxlength="20" name="descricao" type="text" value="<%=medicamento.getDescricao()%>" /></td>
 		</tr>
 	</table>
-	<button name="submitAction" type="submit" value="incluir">Gravar</button>
+	<% if (medicamento.getId() == 0) { %>
+		<button name="submitAction" type="submit" value="incluir">Gravar</button>
+	<%} else { %>
+		<button name="submitAction" type="submit" value="atualizar|<%=medicamento.getId()%>">Gravar</button>
+	<%}%>
+	<button name="submitAction" type="submit" value="limpar">Limpar</button>
 </div> <!-- conteudo_esq -->
 <div ID="conteudo_dir">
 	<h1>Medicamentos Cadastrados</h1>
@@ -75,14 +84,14 @@ if (obj != null)
 		MedicamentoDao dao = new MedicamentoDao();
 		List<Medicamento> medicamentos = dao.buscaTodos();
 		
-		for (Medicamento medicamento : medicamentos) {
+		for (Medicamento dado : medicamentos) {
 			%>
 			<tr>
-				<td><%=medicamento.getId()       %></td>
-				<td><%=medicamento.getNome()     %></td>
-				<td><%=medicamento.getDescricao()%></td>
-				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=medicamento.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
-				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=medicamento.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
+				<td><%=dado.getId()%></td>
+				<td><%=dado.getNome()%></td>
+				<td><%=dado.getDescricao()%></td>
+				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=dado.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
+				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=dado.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
 			</tr>
 			<%
 		}

@@ -2,6 +2,14 @@ package br.edu.asselvi.modelo.entidade;
 
 public class Contato {
 	
+	public Contato(long id, String email, String telefone, String celular) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
+	}
+
 	public Contato(String email, String telefone, String celular) {
 		super();
 		this.email = email;
