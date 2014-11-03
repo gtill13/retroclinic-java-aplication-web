@@ -61,8 +61,8 @@ public class PagamentoServlet extends HttpServlet {
 
 			} else if (acao[0].equals("editar")) {
 
-				editar(Long.parseLong(acao[1]), request, response);
-
+				request.setAttribute("pagamento", editar(Long.parseLong(acao[1]), request, response));
+				
 			} else if (acao[0].equals("excluir")) {
 
 				excluir(Long.parseLong(acao[1]), request, response);
@@ -101,12 +101,12 @@ public class PagamentoServlet extends HttpServlet {
 		dao.atualizar(pagamento);
 	}
 
-	void editar(long id, HttpServletRequest request,
+	Pagamento editar(long id, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		PagamentoDao dao = new PagamentoDao();
 
-		Pagamento pagamento = dao.buscaPagamentoPeloId(id);
+		return dao.buscaPagamentoPeloId(id);
 	}
 
 	void excluir(long id, HttpServletRequest request,

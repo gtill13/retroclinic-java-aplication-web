@@ -64,7 +64,7 @@ public class PacienteServlet extends HttpServlet {
 
 			} else if (acao[0].equals("editar")) {
 
-				editar(Long.parseLong(acao[1]), request, response);
+				request.setAttribute("paciente", editar(Long.parseLong(acao[1]), request, response));				
 
 			} else if (acao[0].equals("excluir")) {
 
@@ -138,12 +138,12 @@ public class PacienteServlet extends HttpServlet {
 		dao.atualizar(paciente);
 	}
 
-	void editar(long id, HttpServletRequest request,
+	Paciente editar(long id, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		PacienteDao dao = new PacienteDao();
 
-		Paciente paciente = dao.buscaPacientePeloId(id);
+		return dao.buscaPacientePeloId(id);
 	}
 
 	void excluir(long id, HttpServletRequest request,

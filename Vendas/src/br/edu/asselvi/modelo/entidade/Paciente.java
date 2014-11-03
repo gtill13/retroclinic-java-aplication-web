@@ -37,9 +37,8 @@ public class Paciente {
 	}
 	
 	public Paciente(long id, String nome, String rg, String cpf, ESexo sexo,
-			Paciente responsavel, Endereco endereco, Contato contato) {
+			Endereco endereco, Contato contato) {
 		this(id, nome, rg, cpf, sexo);
-		this.responsavel = responsavel;
 		this.endereco = endereco;
 		this.contato = contato;
 	}
