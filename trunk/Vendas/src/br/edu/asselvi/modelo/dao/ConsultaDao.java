@@ -14,19 +14,11 @@ public class ConsultaDao extends DaoBase {
 	
 	public void inserirPadrao(Consulta consulta) throws DaoException {
 
-		PacienteDao pacienteDao = new PacienteDao();
-		MedicoDao medicoDao = new MedicoDao();
-		MedicamentoDao medicamentoDao = new MedicamentoDao();
-		PagamentoDao pagamentoDao = new PagamentoDao();
-		
-		pacienteDao.atualizar(consulta.getPaciente());
-		medicoDao.atualizar(consulta.getMedico());
-		
 		conecta();
 		
 		executeUpdate("insert into consulta (id_medico, id_paciente, id_medicamento, id_pagamento) values ( '"
-				+ consulta.getMedico().getId()           + "', '" + consulta.getPaciente().getId() + "', '"
-				+ medicamentoDao.inserirComRetorno(consulta.getMedicamento()) + "', '" + pagamentoDao.inserirComRetorno(consulta.getPagamento()) + "' ) ");
+				+ consulta.getMedico().getId()           + "', '" + consulta.getPaciente().getId()  + "', '"
+				+ consulta.getMedicamento().getId()      + "', '" + consulta.getPagamento().getId() + "' ) ");
 		
 		commit();
 
@@ -54,11 +46,16 @@ public class ConsultaDao extends DaoBase {
 	
 	public void deletar(Consulta consulta) throws DaoException {
 
+		deletar(consulta.getId());
+	}
+
+	public void deletar(long id) throws DaoException {
+
 		//EnderecoDao enderecoDao = new EnderecoDao();
 		//ContatoDao contatoDao = new ContatoDao();
 		conecta();
 
-		executeUpdate("delete from consulta where id = '" + consulta.getId() + "' "); 
+		executeUpdate("delete from consulta where id = '" + id + "' "); 
 
 		//enderecoDao.deletar(paciente.getEndereco());
 		//contatoDao.deletar(paciente.getContato());
@@ -68,6 +65,7 @@ public class ConsultaDao extends DaoBase {
 		disconecta();
 	}
 
+	
 	public List<Consulta> buscaTodos () {
 		
 		final PacienteDao pacienteDao = new PacienteDao();
