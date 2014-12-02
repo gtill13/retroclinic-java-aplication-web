@@ -88,7 +88,7 @@ if (obj != null) {
 	<table>
 		<tr>
 			<td style=" width : 120px;">Medico:</td>
-			<td style=" width : 151px;"><select name="medico">
+			<td style=" width : 151px;"><select required name="medico">
 			<option value="">Selecione</option>
 			<%
 				MedicoDao medicoDao = new MedicoDao();
@@ -104,7 +104,7 @@ if (obj != null) {
 		</tr>
 		<tr>	
 			<td style=" width : 120px;">Paciente:</td>
-			<td style=" width : 151px;"><select name="paciente">
+			<td style=" width : 151px;"><select required name="paciente">
 			<option value="">Selecione</option>
 			<%
 				PacienteDao pacienteDao = new PacienteDao();
@@ -121,7 +121,7 @@ if (obj != null) {
 		
 		<tr>	
 			<td style=" width : 120px;">Medicamento:</td>
-			<td style=" width : 151px;"><select name="medicamento">
+			<td style=" width : 151px;"><select required name="medicamento">
 			<option value="">Selecione</option>
 			<%
 				MedicamentoDao medicamentoDao = new MedicamentoDao();
@@ -138,7 +138,7 @@ if (obj != null) {
 		
 		<tr>	
 			<td style=" width : 120px;">Pagamento:</td>
-			<td style=" width : 151px;"><select name="pagamento">
+			<td style=" width : 151px;"><select required name="pagamento">
 			<option value="">Selecione</option>
 			<%
 				PagamentoDao pagamentoDao = new PagamentoDao();

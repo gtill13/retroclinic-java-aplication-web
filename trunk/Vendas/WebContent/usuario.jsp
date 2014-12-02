@@ -87,11 +87,11 @@ if (obj != null) {
 	<table>
 		<tr>
 			<td style=" width : 120px;">Usuario:</td>
-			<td style=" width : 151px;"><input maxlength="25" name="usuario" type="text" value="<%=login.getLogin()%>"/></td>
+			<td style=" width : 151px;"><input required maxlength="25" name="usuario" type="text" value="<%=login.getLogin()%>"/></td>
 		</tr>
 		<tr>	
 			<td style=" width : 120px;">Senha:</td>
-			<td style=" width : 151px;"><input maxlength="25" name="senha" type="password" /></td>
+			<td style=" width : 151px;"><input required maxlength="25" name="senha" type="password" /></td>
 		</tr>
 	</table>
 	<%

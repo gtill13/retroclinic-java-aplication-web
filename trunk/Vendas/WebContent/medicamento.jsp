@@ -80,7 +80,7 @@ if (obj != null) {
 	<table>
 		<tr>
 			<td style=" width : 120px;">Nome:</td>
-			<td style=" width : 151px;"><input maxlength="25" name="nome" type="text" value="<%=medicamento.getNome()%>"/></td>
+			<td style=" width : 151px;"><input required maxlength="25" name="nome" type="text" value="<%=medicamento.getNome()%>"/></td>
 		</tr>
 		<tr>	
 			<td style=" width : 120px;">Descri&ccedil;&atilde;o:</td>

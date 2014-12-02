@@ -85,15 +85,15 @@ if (obj != null) {
 		<table>
 			<tr> 
 				<td style=" width : 140px;">Nome:</td>
-				<td><input maxlength="25" name="nome" type="text" value="<%=medico.getNome()%>" /></td> 
+				<td><input required maxlength="25" name="nome" type="text" value="<%=medico.getNome()%>" /></td> 
 			</tr>
 			<tr>
 				<td>Crm:</td>
-				<td><input maxlength="20"name="crm" type="text" value="<%=medico.getCrm()%>" /></td>
+				<td><input required maxlength="20"name="crm" type="text" value="<%=medico.getCrm()%>" /></td>
 			</tr>
 			<tr>
 				<td>CPF:</td>
-				<td><input maxlength="20" name="cpf" type="text" value="<%=medico.getCpf()%>" /></td>
+				<td><input required maxlength="20" name="cpf" type="text" value="<%=medico.getCpf()%>" /></td>
 			</tr>
 			<tr>
 			<% if (medico.getSexo() == ESexo.M) { %>
@@ -164,7 +164,7 @@ if (obj != null) {
 			%>
 			<tr>
 				<td><%=dado.getId()  %></td>
-				<td><%=dado.getNome()%></td>
+				<td width="50%"><%=dado.getNome()%></td>
 				<td><%=dado.getCrm() %></td>
 				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=dado.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
 				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=dado.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>

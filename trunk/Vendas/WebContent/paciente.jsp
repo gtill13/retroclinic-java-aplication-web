@@ -83,15 +83,15 @@ if (obj != null) {
 	<table>
 			<tr> 
 				<td style=" width : 140px;">Nome:</td>
-				<td><input maxlength="25" name="nome" type="text" value="<%=paciente.getNome()%>" /></td> 
+				<td><input required maxlength="25" name="nome" type="text" value="<%=paciente.getNome()%>" /></td> 
 			</tr>
 			<tr>
-				<td>Crm:</td>
-				<td><input maxlength="20"name="rg" type="text" value="<%=paciente.getRg()%>" /></td>
+				<td>RG:</td>
+				<td><input required maxlength="20"name="rg" type="text" value="<%=paciente.getRg()%>" /></td>
 			</tr>
 			<tr>
 				<td>CPF:</td>
-				<td><input maxlength="20" name="cpf" type="text" value="<%=paciente.getCpf()%>" /></td>
+				<td><input required maxlength="20" name="cpf" type="text" value="<%=paciente.getCpf()%>" /></td>
 			</tr>
 			<tr>
 			<% if (paciente.getSexo() == ESexo.M) { %>
