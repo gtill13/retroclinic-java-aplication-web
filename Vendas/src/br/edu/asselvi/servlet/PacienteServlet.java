@@ -22,11 +22,12 @@ import br.edu.asselvi.modelo.entidade.Paciente;
  *
  */
 @WebServlet("/PacienteServlet")
-public class PacienteServlet extends HttpServlet {
+public class PacienteServlet extends ServletBase {
 
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
@@ -48,6 +49,11 @@ public class PacienteServlet extends HttpServlet {
 
 		// PrintWriter out = response.getWriter();
 
+		/*if (!validaLogin(request, response))
+		{
+			request.getRequestDispatcher("login.jsp").forward(request, response);;	
+		}*/
+		
 		String submitAction = request.getParameter("submitAction");
 		if (submitAction != null) {
 

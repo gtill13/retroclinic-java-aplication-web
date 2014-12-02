@@ -1,18 +1,18 @@
-<%@page import="br.edu.asselvi.modelo.entidade.Medicamento"%>
+<%@page import="br.edu.asselvi.modelo.entidade.Usuario"%>
 <%@page import="java.util.List"%>
-<%@page import="br.edu.asselvi.modelo.dao.MedicamentoDao"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page import="br.edu.asselvi.modelo.dao.UsuarioDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="config/padrao.css">
 <link rel="stylesheet" type="text/css" href="config/menu.css">
-<title>Medicamento</title>
+<title>Login</title>
 </head>
 <body>
-<form action="MedicamentoServlet" method="POST">
+<form action="UsuarioServlet" method="POST">
 
 <%
 
@@ -61,59 +61,70 @@ if (!logado) {
 <div ID="conteudo">
 
 <%
-Object obj = request.getAttribute("medicamento");
-Medicamento medicamento;
+	Object obj = request.getAttribute("login");
+Usuario login;
 if (obj != null) {
-	medicamento = (Medicamento) obj;
+	login = (Usuario) obj;
 } else {
-	medicamento = new Medicamento(0, "", "");
+	login = new Usuario(0, "", "");
 }
-%> 
+%>
+
 <div ID="conteudo_esq">
-	<h1>
-	<% if (medicamento.getId() == 0) { %>
-		Adicionar Medicamento 
-	<%} else { %>
-		Alterar Medicamento <%}%>
+<h1>
+	<%
+		if (login.getId() == 0) {
+	%>
+		Adicionar Usuario 
+	<%
+		} else {
+	%>
+		Alterar Usuario <%
+		}
+	%>
 	</h1>
 	<hr />
 	<table>
 		<tr>
-			<td style=" width : 120px;">Nome:</td>
-			<td style=" width : 151px;"><input maxlength="25" name="nome" type="text" value="<%=medicamento.getNome()%>"/></td>
+			<td style=" width : 120px;">Usuario:</td>
+			<td style=" width : 151px;"><input maxlength="25" name="usuario" type="text" value="<%=login.getLogin()%>"/></td>
 		</tr>
 		<tr>	
-			<td style=" width : 120px;">Descri&ccedil;&atilde;o:</td>
-			<td style=" width : 151px;"><input maxlength="20" name="descricao" type="text" value="<%=medicamento.getDescricao()%>" /></td>
+			<td style=" width : 120px;">Senha:</td>
+			<td style=" width : 151px;"><input maxlength="25" name="senha" type="password" /></td>
 		</tr>
 	</table>
-	<% if (medicamento.getId() == 0) { %>
+	<%
+		if (login.getId() == 0) {
+	%>
 		<button name="submitAction" type="submit" value="incluir">Gravar</button>
-	<%} else { %>
-		<button name="submitAction" type="submit" value="atualizar|<%=medicamento.getId()%>">Gravar</button>
-	<%}%>
+	<%
+		} else {
+	%>
+		<button name="submitAction" type="submit" value="atualizar|<%=login.getId()%>">Gravar</button>
+	<%
+		}
+	%>
 	<button name="submitAction" type="submit" value="limpar">Limpar</button>
 </div> <!-- conteudo_esq -->
 <div ID="conteudo_dir">
-	<h1>Medicamentos Cadastrados</h1>
+	<h1>Usuarios Cadastrados</h1>
 	<hr />
 	
 	<table class="table_morota">
 	<tr style="background: #000000; color: #FFFFFF">
 		<td class="td1">ID       </td>
 		<td class="td1">Nome     </td>
-		<td class="td1">Descricao</td>
 	</tr>
 	<%
-		MedicamentoDao dao = new MedicamentoDao();
-		List<Medicamento> medicamentos = dao.buscaTodos();
+		UsuarioDao dao = new UsuarioDao();
+		List<Usuario> logins = dao.buscaTodos();
 		
-		for (Medicamento dado : medicamentos) {
-			%>
+		for (Usuario dado : logins) {
+	%>
 			<tr>
 				<td><%=dado.getId()%></td>
-				<td><%=dado.getNome()%></td>
-				<td><%=dado.getDescricao()%></td>
+				<td><%=dado.getLogin()%></td>
 				<td class="td2"><button type="submit" name="submitAction" value="editar|<%=dado.getId()%>" ><img src="imagem/editar.png" width="15" height="15"></button></td>
 				<td class="td2"><button type="submit" name="submitAction" value="excluir|<%=dado.getId()%>"><img src="imagem/excluir.png" width="15" height="15"></button></td>
 			</tr>

@@ -23,7 +23,7 @@ import br.edu.asselvi.modelo.entidade.Pagamento;
  *
  */
 @WebServlet("/ConsultaServlet")
-public class ConsultaServlet extends HttpServlet {
+public class ConsultaServlet extends ServletBase {
 	/**
 	 * 
 	 */
@@ -48,6 +48,11 @@ public class ConsultaServlet extends HttpServlet {
 
 		// PrintWriter out = response.getWriter();
 
+		/*if (!validaLogin(request, response))
+		{
+			request.getRequestDispatcher("login.jsp").forward(request, response);;	
+		}*/
+		
 		String submitAction = request.getParameter("submitAction");
 		if (submitAction != null) {
 
@@ -69,7 +74,6 @@ public class ConsultaServlet extends HttpServlet {
 			} else if (acao[0].equals("excluir")) {
 
 				excluir(Long.parseLong(acao[1]), request, response);
-
 			}
 		}
 
