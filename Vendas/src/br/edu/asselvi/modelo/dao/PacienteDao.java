@@ -209,16 +209,16 @@ public class PacienteDao extends DaoBase {
 		
 		for(int i = 0; i < 10; ++i)
 		{
-			paciente.setNome(stringAleatoria(25));
+			paciente.setNome(stringAleatoria(6));
 			paciente.setCpf(stringAleatoria(12));
 			paciente.setRg(stringAleatoria(8));
 			paciente.setSexo((random.nextInt()%2 == 0) ? ESexo.F : ESexo.M);
 
-			contato.setEmail(stringAleatoria(40));
+			contato.setEmail(stringAleatoria(18));
 			contato.setCelular(stringAleatoria(9));
 			contato.setTelefone(stringAleatoria(9));
 			
-			endereco.setEndereco(stringAleatoria(90));
+			endereco.setEndereco(stringAleatoria(18));
 			endereco.setCidade(stringAleatoria(15));
 			endereco.setCep(stringAleatoria(7));
 			endereco.setBairro(stringAleatoria(14));

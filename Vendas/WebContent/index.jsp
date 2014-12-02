@@ -1,3 +1,5 @@
+<%@page import="br.edu.asselvi.modelo.dao.DaoException"%>
+<%@page import="br.edu.asselvi.modelo.dao.DaoBase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,6 +14,15 @@
 <form name="submitForm" action="LogarServlet" method="POST">
 
 <%
+
+DaoBase dao = new DaoBase();
+try{
+dao.conecta();
+dao.disconecta();
+}
+catch(DaoException e){
+        dao.CriaBanco();
+}
 
 Object obj1 = session.getAttribute("usuario");
 boolean logado = false;

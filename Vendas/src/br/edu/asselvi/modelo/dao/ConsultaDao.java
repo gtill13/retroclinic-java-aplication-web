@@ -161,7 +161,7 @@ public class ConsultaDao extends DaoBase {
 			consulta.setPaciente(pacienteDao.buscaPacientePeloId(idPaciente));
 			
 			medicamento.setNome(stringAleatoria(12));
-			medicamento.setDescricao(stringAleatoria(60));
+			medicamento.setDescricao(stringAleatoria(18));
 			
 			pagamento.setValor(random.nextDouble());
 			

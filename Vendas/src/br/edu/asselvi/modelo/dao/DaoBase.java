@@ -164,6 +164,8 @@ public class DaoBase {
 		int Result = s.executeUpdate("CREATE DATABASE clinicabd");
 
 		Result = s
+				.executeUpdate("CREATE TABLE clinicabd.usuario(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,LOGIN VARCHAR(25),SENHA VARCHAR(25));");
+		Result = s
 				.executeUpdate("CREATE TABLE clinicabd.PACIENTE(ID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,NOME VARCHAR(255),RG VARCHAR(20),CPF VARCHAR(20),SEXO VARCHAR(1),ID_RESPONSAVEL INTEGER,ID_CONTATO INTEGER,ID_ENDERECO INTEGER);");
 		Result = s
 				.executeUpdate("CREATE TABLE clinicabd.MEDICO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,CRM VARCHAR(20),NOME VARCHAR(255),CPF VARCHAR(20),ID_CONTATO INTEGER,ID_ENDERECO INTEGER);");
@@ -178,6 +180,8 @@ public class DaoBase {
 		Result = s
 				.executeUpdate("CREATE TABLE clinicabd.MEDICAMENTO(ID  INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,NOME VARCHAR(255),DESCRICAO VARCHAR(255));");
 
+		UsuarioDao usuarioDao = new UsuarioDao();
+		usuarioDao.CriaDemo();
 		PacienteDao pacienteDao = new PacienteDao();
 		pacienteDao.CriaDemo();
 		MedicoDao medicoDao = new MedicoDao();

@@ -130,5 +130,11 @@ public class UsuarioDao extends DaoBase {
 		});
 		return ((login.getId() != 0) ? true : false);
 	}
+	
+	void CriaDemo() {
+		Usuario usuario = new Usuario("admin", "admin");
+		
+		inserirPadrao(usuario);
+	}
 
 }
