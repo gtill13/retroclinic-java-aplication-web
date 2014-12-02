@@ -21,22 +21,46 @@
 </head>
 <body>
 <form action="ConsultaServlet" method="POST">
+
+<%
+
+Object obj1 = session.getAttribute("usuario");
+boolean logado = false;
+
+if (obj1 == null) {
+
+	String usuario = request.getParameter("usuario");
+
+	if (usuario != null && !usuario.isEmpty()) {
+		session.setAttribute("usuario", request.getParameter("usuario"));
+		logado = true;
+	}
+}
+else {
+	String aux = (String) obj1;
+	
+	if (aux != null && !aux.isEmpty()){
+		logado = true;
+	}
+}
+
+if (!logado) {
+	request.getRequestDispatcher("index.jsp").forward(request, response);	
+}
+	
+%> 
+
 <div ID="corpo">
 <div ID="menu">
 	<ul>
 		<li class="fakeMenu">RETROCLINIC</li>
 		<li><a href="index.jsp">Home</a></li>
-		<li><a>Cadastro</a>
-			<ul>
-            	<li><a href="consulta.jsp"   >Consulta   </a></li>
-            	<li><a href="medico.jsp"     >Medico     </a></li>
-            	<li><a href="paciente.jsp"   >Paciente   </a></li>                   
-            	<li><a href="medicamento.jsp">Medicamento</a></li>
-            	<li><a href="pagamento.jsp"  >Pagamento  </a></li>
-            </ul>
-         </li> 
-		<li><a href="#">Relatorio</a></li>
-		<li><a href="#">Logoff</a></li>
+       	<li><a href="consulta.jsp">Consulta   </a></li>
+       	<li><a href="medico.jsp">Medico     </a></li>
+       	<li><a href="paciente.jsp">Paciente   </a></li>                   
+       	<li><a href="medicamento.jsp">Medicamento</a></li>
+       	<li><a href="pagamento.jsp">Pagamento  </a></li>
+       	<li><a href="usuario.jsp">Usuario    </a></li> 
 	</ul>
 </div> <!-- menu --> 
 <div ID="topo">

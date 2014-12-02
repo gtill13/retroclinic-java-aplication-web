@@ -12,20 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.asselvi.modelo.dao.MedicamentoDao;
+import br.edu.asselvi.modelo.dao.UsuarioDao;
 import br.edu.asselvi.modelo.entidade.Medicamento;
+import br.edu.asselvi.modelo.entidade.Usuario;
 
 /**
  * @author TiLL
  *
  */
+@WebServlet("/UsuarioServlet")
+public class UsuarioServlet extends ServletBase {
 
-@WebServlet("/MedicamentoServlet")
-public class MedicamentoServlet extends ServletBase {
-
-	/**
-	 * 
-	 */
-	
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
@@ -44,7 +41,7 @@ public class MedicamentoServlet extends ServletBase {
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
 		// PrintWriter out = response.getWriter();
 
 		/*if (!validaLogin(request, response))
@@ -53,74 +50,82 @@ public class MedicamentoServlet extends ServletBase {
 		}*/
 		
 		String submitAction = request.getParameter("submitAction");
-		if (submitAction != null) {
+			if (submitAction != null) {
 
-			String delimitador = "[ |]+";
-			String[] acao = submitAction.split(delimitador);
+				String delimitador = "[ |]+";
+				String[] acao = submitAction.split(delimitador);
 
-			if (acao[0].equals("incluir")) {
+				if (acao[0].equals("incluir")) {
 
-				incluir(request, response);
+					incluir(request, response);
 
-			} else if (acao[0].equals("atualizar")) {
+				} else if (acao[0].equals("atualizar")) {
 
-				atualizar(Long.parseLong(acao[1]), request, response);
+					atualizar(Long.parseLong(acao[1]), request, response);
 
-			} else if (acao[0].equals("editar")) {
+				} else if (acao[0].equals("editar")) {
 
-				request.setAttribute("medicamento", editar(Long.parseLong(acao[1]), request, response));
-	
-			} else if (acao[0].equals("excluir")) {
+					request.setAttribute("login", editar(Long.parseLong(acao[1]), request, response));
+			
+				} else if (acao[0].equals("excluir")) {
 
-				excluir(Long.parseLong(acao[1]), request, response);
+					excluir(Long.parseLong(acao[1]), request, response);
 
+				}
 			}
-		}
 
-		request.getRequestDispatcher("medicamento.jsp").forward(request, response);	
+		request.getRequestDispatcher("usuario.jsp").forward(request, response);	
+		
 	}
 
 	void incluir(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		MedicamentoDao dao = new MedicamentoDao();
-		Medicamento medicamento = new Medicamento();
+		UsuarioDao dao = new UsuarioDao();
+		Usuario usuario = new Usuario();
 
 		// implementacao
-		medicamento.setNome(request.getParameter("nome"));
-		medicamento.setDescricao(request.getParameter("descricao"));
+		usuario.setLogin(request.getParameter("usuario"));
+		usuario.setSenha(request.getParameter("senha"));
 
-		dao.inserir(medicamento);
+		dao.inserirPadrao(usuario);
+		
 	}
-
+	
 	void atualizar(long id, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		MedicamentoDao dao = new MedicamentoDao();
-		Medicamento medicamento = new Medicamento();
+	
+		UsuarioDao dao = new UsuarioDao();
+		Usuario usuario = new Usuario();
 
 		// implementacao
 
-		medicamento.setId(id);
-		medicamento.setNome(request.getParameter("nome"));
-		medicamento.setDescricao(request.getParameter("descricao"));
+		usuario.setId(id);
+		usuario.setLogin(request.getParameter("usuario"));
+		usuario.setSenha(request.getParameter("senha"));
 
-		dao.atualizar(medicamento);
+		dao.atualizar(usuario);
+		
 	}
-
-	Medicamento editar(long id, HttpServletRequest request,
+	
+	Usuario editar(long id, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		MedicamentoDao dao = new MedicamentoDao();
+		UsuarioDao dao = new UsuarioDao();
 
-		return dao.buscaMedicamentoPeloId(id);
+		return dao.buscaEnderecoPeloId(id);
+
 	}
-
+	
 	void excluir(long id, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		MedicamentoDao dao = new MedicamentoDao();
+	
+		UsuarioDao dao = new UsuarioDao();
 
 		dao.deletar(id);
+		
 	}
+	
 }
+
+
